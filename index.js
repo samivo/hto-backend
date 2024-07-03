@@ -19,8 +19,8 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
-const port = process.env.PORT
 
+const port = process.env.PORT
 const mondoDbUrl = process.env.MONGODB_CONN
 
 app.get('/notam', (req, res) => {
