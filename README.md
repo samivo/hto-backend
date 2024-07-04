@@ -3,7 +3,7 @@ See [hto](https://github.com/samivo/hto)
 
 # Run
 ```
-npm udate
+npm install
 node index.js
 ```
 
