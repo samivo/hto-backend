@@ -46,7 +46,10 @@ app.get('/persons', (req, res) => {
     // Connect to the MongoDB server
     client.connect().then((client) => {
 
-        client.db("Hto").collection("Persons").find({}).toArray().then((results) => {
+        var dateNow = new Date();
+        dateNow.setDate(dateNow.getDate()-1);
+
+        client.db("Hto").collection("Persons").find({ready_time: { $gte: dateNow }}).toArray().then((results) => {
             client.close();
             res.send(JSON.stringify(results));
         });
@@ -66,6 +69,8 @@ app.post('/persons', (req, res) => {
     client.connect().then((client) => {
 
         delete req.body._id;
+
+        req.body.ready_time = new Date(req.body.ready_time);
 
         client.db("Hto").collection("Persons").insertOne(req.body).then(() => {
             client.close();
