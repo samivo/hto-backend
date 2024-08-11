@@ -100,6 +100,8 @@ app.put('/persons', (req, res) => {
             const id = new ObjectId(String(req.body._id));
             delete req.body._id;
 
+            req.body.ready_time = new Date(req.body.ready_time);
+
             client.db("Hto").collection("Persons").updateOne(
                 {
                     "_id": id
